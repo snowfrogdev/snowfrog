@@ -1,9 +1,47 @@
 {
-  
-  
   "version": 2,
-  
-  "projects": {},
+  "projects": {
+    "girl-friday": {
+      "root": "packages/girl-friday",
+      "sourceRoot": "packages/girl-friday/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/girl-friday/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/girl-friday"
+          ],
+          "options": {
+            "jestConfig": "packages/girl-friday/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "executor": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/packages/girl-friday",
+            "tsConfig": "packages/girl-friday/tsconfig.lib.json",
+            "packageJson": "packages/girl-friday/package.json",
+            "main": "packages/girl-friday/src/index.ts",
+            "assets": [
+              "packages/girl-friday/*.md"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "defaultCollection": "@nrwl/workspace"
   }
