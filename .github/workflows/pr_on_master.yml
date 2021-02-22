@@ -1,0 +1,37 @@
+name: PR on master
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [ opened, reopened, synchronize ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 13.x ]
+
+steps:
+  - uses: actions/checkout@v2
+    with:
+      ref: ${{ github.event.pull_request.head.ref }}
+      fetch-depth: 0
+
+  - name: Use Node.js ${{ matrix.node-version }}
+    uses: actions/setup-node@v1
+    with:
+      node-version: ${{ matrix.node-version }}
+
+  - name: Fetch other branches
+      run: git fetch --no-tags --prune --depth=5 origin master
+
+  - name: Install environment
+    run: npm ci
+
+  - name: Run lint
+    run: npm run affected:lint -- --base="origin/master"
+
+  - name: Tests coverage
+    run: npm run affected:test -- --base="origin/master" --codeCoverage
