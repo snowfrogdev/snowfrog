@@ -1,9 +1,10 @@
 import { Level } from './level';
 import { TransporterConfig } from './transporter-config';
+import { ConsoleTransporter } from './transporters/console.transporter';
 
 export class Logger {
-  constructor(private _configs: TransporterConfig[]) { }
-  
+  constructor(private _configs: TransporterConfig[] = [{ level: Level.Info, transporter: new ConsoleTransporter() }]) {}
+
   trace(message: string): void {
     this._logWith(Level.Trace, message);
   }
@@ -27,7 +28,6 @@ export class Logger {
   fatal(message: string): void {
     this._logWith(Level.Fatal, message);
   }
-
 
   private _logWith(level: Level, message: string): void {
     for (const config of this._configs) {
