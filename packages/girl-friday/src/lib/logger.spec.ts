@@ -5,7 +5,7 @@ import { Transporter } from './transporter';
 describe('Logger', () => {
   test('#info message is passed to registered transporter when logging level set to info', () => {
     let param: string;
-    const transporter: Transporter = { write: (message) => (param = message) };
+    const transporter: Transporter = { write: (level, message) => (param = message) };
 
     const logger = new Logger([{ level: Level.Info, transporter: transporter }]);
     const message = 'This is a test';
@@ -17,7 +17,7 @@ describe('Logger', () => {
 
   test('#info message is passed to registered transporter when logging level set to debug', () => {
     let param: string;
-    const transporter: Transporter = { write: (message) => (param = message) };
+    const transporter: Transporter = { write: (level, message) => (param = message) };
 
     const logger = new Logger([{ level: Level.Debug, transporter: transporter }]);
     const message = 'This is a test';
@@ -44,8 +44,8 @@ describe('Logger', () => {
     let infoParam: string;
     let traceParam: string;
     const fatalTransporter: Transporter = { write: () => (fatalTransporterhasBeenCalled = true) };
-    const infoTransporter: Transporter = { write: (message) => (infoParam = message) };
-    const traceTransporter: Transporter = { write: (message) => (traceParam = message) };
+    const infoTransporter: Transporter = { write: (level, message) => (infoParam = message) };
+    const traceTransporter: Transporter = { write: (level, message) => (traceParam = message) };
 
     const logger = new Logger([
       { level: Level.Fatal, transporter: fatalTransporter },
