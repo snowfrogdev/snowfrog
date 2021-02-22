@@ -15,10 +15,6 @@
       "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
-  "projects": {
-    "girl-friday": { "tags": [] },
-    "girl-friday-example-app": { "tags": [] },
-    "girl-friday-example-app-e2e": { "tags": [], "implicitDependencies": ["girl-friday-example-app"] }
-  },
+  "projects": { "girl-friday": { "tags": [] } },
   "workspaceLayout": { "appsDir": "packages", "libsDir": "packages" }
 }
