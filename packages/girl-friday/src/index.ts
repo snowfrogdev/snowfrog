@@ -1,1 +1,1 @@
-export * from './lib/girl-friday';
+export * from './lib/logger';
