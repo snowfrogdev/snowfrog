@@ -4,5 +4,5 @@ export enum Level {
   Warn,
   Info,
   Debug,
-  Trace
+  Trace,
 }

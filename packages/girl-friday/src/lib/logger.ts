@@ -1,5 +1,5 @@
-import { Level } from "./level";
-import { TransporterConfig } from "./transporter-config";
+import { Level } from './level';
+import { TransporterConfig } from './transporter-config';
 
 export class Logger {
   constructor(private _configs: TransporterConfig[]) {}
